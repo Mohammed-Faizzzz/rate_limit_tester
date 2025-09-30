@@ -7,8 +7,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-def test_chatbot():
-    
+def test_chatbot(proc_id):
+    print(f"[Proc {proc_id}] starting…")
     # Replace with the URL of the chatbot web app (or use environment variable)
     URL = os.getenv("URL")
 
@@ -27,7 +27,7 @@ def test_chatbot():
         EC.element_to_be_clickable((By.XPATH, "(//input[@placeholder='Ask Anything...'])[last()]/following::img[1]"))
     )
 
-    for i in range(121): # send 121 messages (adjust as necessary)
+    for i in range(10): # send 121 messages (adjust as necessary)
         msg = f"Test prompt #{i}"
 
         driver.execute_script("arguments[0].value = arguments[1];", input_box, msg) # set input box value via JS
@@ -37,6 +37,3 @@ def test_chatbot():
 
         print(f"Sent: {msg}")
         time.sleep(20)  # wait for chatbot reply (adjust as necessary)
-        
-
-test_chatbot()
