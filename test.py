@@ -3,14 +3,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def test_chatbot():
     
     # Replace with the URL of the chatbot web app (or use environment variable)
-    URL = ""
+    URL = os.getenv("URL")
 
     driver = webdriver.Chrome()
     driver.get(URL)
+
     wait = WebDriverWait(driver, 20) # wait 20s for the page to load
 
     # input box
@@ -27,7 +31,7 @@ def test_chatbot():
         msg = f"Test prompt #{i}"
 
         driver.execute_script("arguments[0].value = arguments[1];", input_box, msg) # set input box value via JS
-        # driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", input_box) 
+        driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", input_box) 
 
         send_icon.click()  # click the send button
 

@@ -1,5 +1,5 @@
 from multiprocessing import Process
-from test import test_chatbot   # replace with the actual filename (without .py)
+from test import test_chatbot
 
 if __name__ == "__main__":
     processes = []
